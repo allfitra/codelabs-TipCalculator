@@ -23,31 +23,29 @@ public final class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding var10001 = ActivityMainBinding.inflate(this.getLayoutInflater());
-        Intrinsics.checkNotNullExpressionValue(var10001, "ActivityMainBinding.inflate(layoutInflater)");
-        this.binding = var10001;
-        var10001 = this.binding;
-        if (var10001 == null) {
+        ActivityMainBinding binding = ActivityMainBinding.inflate(this.getLayoutInflater());
+        Intrinsics.checkNotNullExpressionValue(binding, "ActivityMainBinding.inflate(layoutInflater)");
+        this.binding = binding;
+        binding = this.binding;
+        if (binding == null) {
             Intrinsics.throwUninitializedPropertyAccessException("binding");
         }
 
-        this.setContentView((View)var10001.getRoot());
-        ActivityMainBinding var10000 = this.binding;
-        if (var10000 == null) {
+        this.setContentView((View)binding.getRoot());
+        if (this.binding == null) {
             Intrinsics.throwUninitializedPropertyAccessException("binding");
         }
 
-        var10000.calculateButton.setOnClickListener((OnClickListener)(new OnClickListener() {
+        this.binding.calculateButton.setOnClickListener((OnClickListener)(new OnClickListener() {
             public final void onClick(View it) {
                 MainActivity.this.calculateTip();
             }
         }));
-        var10000 = this.binding;
-        if (var10000 == null) {
+        if (this.binding == null) {
             Intrinsics.throwUninitializedPropertyAccessException("binding");
         }
 
-        var10000.costOfServiceEditText.setOnKeyListener((OnKeyListener)(new OnKeyListener() {
+        this.binding.costOfServiceEditText.setOnKeyListener((OnKeyListener)(new OnKeyListener() {
             public final boolean onKey(View view, int keyCode, KeyEvent $noName_2) {
                 MainActivity var10000 = MainActivity.this;
                 Intrinsics.checkNotNullExpressionValue(view, "view");
@@ -57,29 +55,27 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     private void calculateTip() {
-        ActivityMainBinding var10000 = this.binding;
-        if (var10000 == null) {
+        if (this.binding == null) {
             Intrinsics.throwUninitializedPropertyAccessException("binding");
         }
 
-        TextInputEditText var8 = var10000.costOfServiceEditText;
+        TextInputEditText var8 = this.binding.costOfServiceEditText;
         Intrinsics.checkNotNullExpressionValue(var8, "binding.costOfServiceEditText");
         String stringInTextField = String.valueOf(var8.getText());
         Double cost = StringsKt.toDoubleOrNull(stringInTextField);
-        if (cost != null && !Intrinsics.areEqual(cost, 0.0D)) {
-            var10000 = this.binding;
-            if (var10000 == null) {
+        if (cost != null && !Intrinsics.areEqual(cost, 0.0)) {
+            if (this.binding == null) {
                 Intrinsics.throwUninitializedPropertyAccessException("binding");
             }
 
-            RadioGroup var9 = var10000.tipOptions;
+            RadioGroup var9 = this.binding.tipOptions;
             Intrinsics.checkNotNullExpressionValue(var9, "binding.tipOptions");
             double var10;
             switch(var9.getCheckedRadioButtonId()) {
-                case 1000046:
+                case (R.id.option_twenty_percent):
                     var10 = 0.20;
                     break;
-                case 1000129:
+                case (R.id.option_eighteen_percent):
                     var10 = 0.18;
                     break;
                 default:
@@ -88,12 +84,11 @@ public final class MainActivity extends AppCompatActivity {
 
             double tipPercentage = var10;
             double tip = tipPercentage * cost;
-            var10000 = this.binding;
-            if (var10000 == null) {
+            if (this.binding == null) {
                 Intrinsics.throwUninitializedPropertyAccessException("binding");
             }
 
-            SwitchMaterial var11 = var10000.roundUpSwitch;
+            SwitchMaterial var11 = this.binding.roundUpSwitch;
             Intrinsics.checkNotNullExpressionValue(var11, "binding.roundUpSwitch");
             boolean roundUp = var11.isChecked();
             if (roundUp) {
@@ -108,23 +103,22 @@ public final class MainActivity extends AppCompatActivity {
 
     private void displayTip(double tip) {
         String formattedTip = NumberFormat.getCurrencyInstance().format(tip);
-        ActivityMainBinding var10000 = this.binding;
-        if (var10000 == null) {
+        if (this.binding == null) {
             Intrinsics.throwUninitializedPropertyAccessException("binding");
         }
 
-        TextView var4 = var10000.tipResult;
+        TextView var4 = this.binding.tipResult;
         Intrinsics.checkNotNullExpressionValue(var4, "binding.tipResult");
         var4.setText((CharSequence)this.getString(R.string.tip_amount, new Object[]{formattedTip}));
     }
 
     private boolean handleKeyEvent(View view, int keyCode) {
         if (keyCode == 66) {
-            Object var10000 = this.getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (var10000 == null) {
+            Object binding = this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (this.binding == null) {
                 throw new NullPointerException("null cannot be cast to non-null type android.view.inputmethod.InputMethodManager");
             } else {
-                InputMethodManager inputMethodManager = (InputMethodManager)var10000;
+                InputMethodManager inputMethodManager = (InputMethodManager)binding;
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 return true;
             }
